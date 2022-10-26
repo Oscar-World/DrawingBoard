@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/color_drawer"
+    android:layout_width="80dp"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="end"
+    android:weightSum="10"
+    android:background="@color/background"
+    >
+
+    <android.widget.Button
+        android:id="@+id/black_Btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:background="@drawable/button_round"
+        />
+
+    <android.widget.Button
+        android:id="@+id/white_Btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/white"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:background="@drawable/button_round"
+        />
+
+    <android.widget.Button
+        android:id="@+id/red_Btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/red"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:background="@drawable/button_round"
+        />
+
+    <android.widget.Button
+        android:id="@+id/orange_Btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/orange"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:background="@drawable/button_round"
+        />
+
+    <android.widget.Button
+        android:id="@+id/yellow_Btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/yellow"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:background="@drawable/button_round"
+        />
+
+    <android.widget.Button
+        android:id="@+id/green_Btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/green"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:background="@drawable/button_round"
+        />
+
+    <android.widget.Button
+        android:id="@+id/blue_Btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/blue"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:background="@drawable/button_round"
+        />
+
+    <android.widget.Button
+        android:id="@+id/purple_Btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/purple"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:background="@drawable/button_round"
+        />
+
+    <android.widget.Button
+        android:id="@+id/brown_Btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/brown"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:background="@drawable/button_round"
+        />
+
+    <android.widget.Button
+        android:id="@+id/apricot_Btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/apricot"
+        android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:background="@drawable/button_round"
+        />
+
+</LinearLayout>
