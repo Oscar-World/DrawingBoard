@@ -8,12 +8,14 @@ import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
 import android.graphics.PorterDuff;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
@@ -46,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
         String filename = dateName(System.currentTimeMillis());
         Log.d(TAG, "filename: " + filename);
 
-//        File file = new File(Environment.getExternalStorageDirectory()+"/DCIM/Screenshots", filename);
-        File file = new File(Environment.getExternalStorageDirectory()+"/Pictures", filename);
+        File file = new File(Environment.getExternalStorageDirectory()+"/DCIM/Screenshots", filename);
+//        File file = new File(Environment.getExternalStorageDirectory()+"/Pictures", filename);
         FileOutputStream os = null;
         try{
             Toast.makeText(getApplicationContext(),"저장 완료", Toast.LENGTH_SHORT).show();
@@ -80,7 +82,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        LinearLayout seekbar_Linear = findViewById(R.id.seekbar_Linear);
+        FrameLayout seekbar_Frame = findViewById(R.id.seekbar_Frame);
+        LinearLayout set_Linear = findViewById(R.id.set_Linear);
 
         ImageButton saveBtn = findViewById(R.id.save_Btn);
         ImageButton resetBtn = findViewById(R.id.reset_Btn);
@@ -132,7 +135,7 @@ public class MainActivity extends AppCompatActivity {
                 if (view.getId() == R.id.color_Btn) {
                     drawerLayout.openDrawer(drawerView);
                 }  else if (view.getId() == R.id.radius_Btn) {
-                    seekbar_Linear.setVisibility(View.VISIBLE);
+                    seekbar_Frame.setVisibility(View.VISIBLE);
                 } else {
                     if (view.getId() == R.id.save_Btn) {
 
@@ -174,7 +177,7 @@ public class MainActivity extends AppCompatActivity {
                         colorBtn.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.apricot)));
                     }
 
-                    seekbar_Linear.setVisibility(View.GONE);
+                    seekbar_Frame.setVisibility(View.GONE);
                     drawerLayout.closeDrawer(drawerView);
 
                 }

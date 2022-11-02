@@ -74,12 +74,10 @@
 
     </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/seekbar_Linear"
+        <FrameLayout
+            android:id="@+id/seekbar_Frame"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="10"
             android:visibility="gone"
             >
 
@@ -90,21 +88,23 @@
             android:max="30"
             android:progress="15"
             android:min="1"
-            android:layout_weight="2"
-            android:layout_margin="10dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="30dp"
+            android:gravity="left"
             />
 
             <TextView
                 android:id="@+id/seekbar_Text"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="15"
                 android:textSize="15dp"
-                android:layout_weight="8"
-                android:layout_margin="10dp"
+                android:layout_margin="15dp"
+                android:layout_gravity="end"
                 />
 
-        </LinearLayout>
+        </FrameLayout>
 
 
     <com.example.drawingboard.DrawBoard
