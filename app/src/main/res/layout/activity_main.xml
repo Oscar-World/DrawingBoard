@@ -106,12 +106,19 @@
 
         </FrameLayout>
 
+<FrameLayout
+    android:id="@+id/boardLayout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    >
 
     <com.example.drawingboard.DrawBoard
         android:id="@+id/drawBoard"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         />
+
+</FrameLayout>
 
     </LinearLayout>
 
