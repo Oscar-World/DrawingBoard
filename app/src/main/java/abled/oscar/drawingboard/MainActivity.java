@@ -30,6 +30,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.bumptech.glide.Glide;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.normal.TedPermission;
 
@@ -45,16 +46,21 @@ public class MainActivity extends AppCompatActivity {
     String TAG = "메인액티비티";
     String FILENAME = "yyyy-MM-dd-HH-mm-ss-SSS";
 
-    LinearLayout seekbar_Layout;
+    FrameLayout frameLayout;
+    LinearLayout seekbarLayout, mainLayout, resultLayout;
     DrawerLayout drawerLayout;
     View drawerView;
     SeekBar seekBar;
 
-    ImageButton saveBtn, resetBtn, radiusBtn;
+    ImageButton screenshotBtn, resetBtn, radiusBtn, saveBtn, shareBtn;
     Button colorBtn, blackBtn, whiteBtn, redBtn, orangeBtn, yellowBtn, greenBtn, blueBtn, purpleBtn, brownBtn, apricotBtn;
     TextView seekbar_Text;
+    ImageView resultImage, backBtn;
 
-    FrameLayout frameLayout;
+    File file;
+    String filePath;
+    Bitmap bitmap;
+    String fileName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,14 +73,20 @@ public class MainActivity extends AppCompatActivity {
     } // onCreate()
 
 
+
+
+
     public void setVariable() {
 
-        seekbar_Layout = findViewById(R.id.seekbar_Layout);
+        frameLayout = findViewById(R.id.boardLayout);
+        mainLayout = findViewById(R.id.mainLayout);
+        resultLayout = findViewById(R.id.resultLayout);
+        seekbarLayout = findViewById(R.id.seekbar_Layout);
         drawerLayout = findViewById(R.id.drawerLayout);
         drawerView = findViewById(R.id.color_drawer);
         seekBar = findViewById(R.id.radius_Seekbar);
 
-        saveBtn = findViewById(R.id.save_Btn);
+        screenshotBtn = findViewById(R.id.screenshot_Btn);
         resetBtn = findViewById(R.id.reset_Btn);
         radiusBtn = findViewById(R.id.radius_Btn);
         colorBtn = findViewById(R.id.color_Btn);
@@ -89,8 +101,11 @@ public class MainActivity extends AppCompatActivity {
         brownBtn = findViewById(R.id.brown_Btn);
         apricotBtn = findViewById(R.id.apricot_Btn);
         seekbar_Text = findViewById(R.id.seekbar_Text);
+        resultImage = findViewById(R.id.resultImageView);
+        saveBtn = findViewById(R.id.saveButton);
+        shareBtn = findViewById(R.id.shareButton);
+        backBtn = findViewById(R.id.resultBackButton);
 
-        frameLayout = findViewById(R.id.boardLayout);
 
 
     } // setVariable()
@@ -116,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
                 // 시크바 조작 끝났을 시
-                seekbar_Layout.setVisibility(View.GONE);
+                seekbarLayout.setVisibility(View.GONE);
             }
         });
 
@@ -128,9 +143,16 @@ public class MainActivity extends AppCompatActivity {
                 if (view.getId() == R.id.color_Btn) {
                     drawerLayout.openDrawer(drawerView);
                 } else if (view.getId() == R.id.radius_Btn) {
-                    seekbar_Layout.setVisibility(View.VISIBLE);
+                    seekbarLayout.setVisibility(View.VISIBLE);
+                } else if (view.getId() == R.id.saveButton) {
+                    saveImage();
+                } else if (view.getId() == R.id.shareButton) {
+
+                } else if (view.getId() == R.id.resultBackButton) {
+                    resultLayout.setVisibility(View.GONE);
+                    mainLayout.setVisibility(View.VISIBLE);
                 } else {
-                    if (view.getId() == R.id.save_Btn) {
+                    if (view.getId() == R.id.screenshot_Btn) {
 
                         takeScreenShot();
 
@@ -168,7 +190,7 @@ public class MainActivity extends AppCompatActivity {
                         colorBtn.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(MainActivity.this, R.color.apricot)));
                     }
 
-                    seekbar_Layout.setVisibility(View.GONE);
+                    seekbarLayout.setVisibility(View.GONE);
                     drawerLayout.closeDrawer(drawerView);
 
                 }
@@ -176,7 +198,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        saveBtn.setOnClickListener(Click);
+        screenshotBtn.setOnClickListener(Click);
         resetBtn.setOnClickListener(Click);
         radiusBtn.setOnClickListener(Click);
         colorBtn.setOnClickListener(Click);
@@ -190,6 +212,9 @@ public class MainActivity extends AppCompatActivity {
         purpleBtn.setOnClickListener(Click);
         brownBtn.setOnClickListener(Click);
         apricotBtn.setOnClickListener(Click);
+        saveBtn.setOnClickListener(Click);
+        shareBtn.setOnClickListener(Click);
+        backBtn.setOnClickListener(Click);
 
     } // setView()
 
@@ -202,19 +227,16 @@ public class MainActivity extends AppCompatActivity {
                     public void onPermissionGranted() {
 
                         SimpleDateFormat format = new SimpleDateFormat(FILENAME);
-                        String fileName = format.format(System.currentTimeMillis());
+                        fileName = format.format(System.currentTimeMillis());
 
-                        File file;
-                        String filePath;
+                        bitmap = ScreenShott.getInstance().takeScreenShotOfView(frameLayout);
 
-                        Bitmap bitmap = ScreenShott.getInstance().takeScreenShotOfView(frameLayout);
-                        try {
-                            file = ScreenShott.getInstance().saveScreenshotToPicturesFolder(MainActivity.this, bitmap, fileName);
-                            filePath = file.getAbsolutePath();
-                            Log.d(TAG, "filePath2 : " + filePath);
-                        } catch (Exception e) {
-                            throw new RuntimeException(e);
-                        }
+                        Glide.with(MainActivity.this)
+                                .load(bitmap)
+                                .into(resultImage);
+
+                        mainLayout.setVisibility(View.GONE);
+                        resultLayout.setVisibility(View.VISIBLE);
 
                     }
 
@@ -236,6 +258,22 @@ public class MainActivity extends AppCompatActivity {
         }
 
     } // takeScreenShot()
+
+
+    public void saveImage() {
+
+        try {
+            file = ScreenShott.getInstance().saveScreenshotToPicturesFolder(MainActivity.this, bitmap, fileName);
+            filePath = file.getAbsolutePath();
+
+            Toast.makeText(MainActivity.this, "갤러리에 저장되었습니다.", Toast.LENGTH_SHORT).show();
+
+        } catch (Exception e) {
+            Toast.makeText(MainActivity.this, "알 수 없는 오류로 저장이 실패했습니다.", Toast.LENGTH_SHORT).show();
+            throw new RuntimeException(e);
+        }
+
+    } // saveImage()
 
 
     public void sharedImage() {

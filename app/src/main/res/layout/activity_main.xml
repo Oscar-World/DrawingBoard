@@ -10,10 +10,13 @@
     tools:context="abled.oscar.drawingboard.MainActivity">
 
     <LinearLayout
+        android:id="@+id/mainLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:weightSum="10">
+        android:weightSum="10"
+        android:visibility="visible"
+        >
 
     <LinearLayout
         android:id="@+id/set_Linear"
@@ -26,13 +29,14 @@
         >
 
         <android.widget.ImageButton
-            android:id="@+id/save_Btn"
+            android:id="@+id/screenshot_Btn"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/background"
             android:layout_margin="10dp"
             android:layout_weight="1"
-            android:src="@drawable/save"
+            android:src="@drawable/screenshot"
+            android:padding="8dp"
             android:scaleType="fitCenter"
             android:background="@drawable/button_round"
             />
@@ -125,6 +129,107 @@
         />
 
 </FrameLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/resultLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:weightSum="10"
+        android:visibility="gone"
+        >
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="#dbddfe"
+            >
+
+            <ImageView
+                android:id="@+id/resultBackButton"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                app:srcCompat="?attr/actionModeCloseDrawable"
+                android:backgroundTint="#00FFFFFF"
+                android:layout_gravity="center|start"
+                android:layout_marginStart="15dp"
+                />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="22dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:text="이미지 확인"
+                android:layout_gravity="center"
+                />
+
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/resultImageView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="7"
+            android:background="#dbddfe"
+            >
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                />
+
+            <ImageButton
+                android:id="@+id/saveButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:src="@drawable/save"
+                android:scaleType="fitCenter"
+                android:backgroundTint="@color/white"
+                android:background="@drawable/button_round"
+                android:layout_marginVertical="10dp"
+                />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                />
+
+            <ImageButton
+                android:id="@+id/shareButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:src="@drawable/share"
+                android:scaleType="fitCenter"
+                android:backgroundTint="@color/white"
+                android:background="@drawable/button_round"
+                android:padding="10dp"
+                android:layout_marginVertical="10dp"
+                />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                />
+
+        </LinearLayout>
 
     </LinearLayout>
 
