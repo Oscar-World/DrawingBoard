@@ -1,4 +1,4 @@
-package com.example.drawingboard;
+package abled.oscar.drawingboard;
 
 import org.junit.Test;
 

@@ -7,17 +7,19 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context="abled.oscar.drawingboard.MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:weightSum="10">
 
     <LinearLayout
         android:id="@+id/set_Linear"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:orientation="horizontal"
         android:weightSum="4"
         android:background="#dbddfe"
@@ -25,7 +27,7 @@
 
         <android.widget.ImageButton
             android:id="@+id/save_Btn"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/background"
             android:layout_margin="10dp"
@@ -37,7 +39,7 @@
 
         <android.widget.ImageButton
             android:id="@+id/reset_Btn"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/background"
             android:layout_margin="10dp"
@@ -49,7 +51,7 @@
 
         <android.widget.ImageButton
             android:id="@+id/radius_Btn"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/background"
             android:text="-"
@@ -64,7 +66,7 @@
 
         <android.widget.Button
             android:id="@+id/color_Btn"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"
             android:layout_weight="1"
@@ -74,45 +76,49 @@
 
     </LinearLayout>
 
-        <FrameLayout
-            android:id="@+id/seekbar_Frame"
+        <LinearLayout
+            android:id="@+id/seekbar_Layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingVertical="12dp"
             android:visibility="gone"
             >
 
         <SeekBar
             android:id="@+id/radius_Seekbar"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="9"
             android:max="30"
             android:progress="15"
             android:min="1"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="30dp"
-            android:gravity="left"
+            android:layout_gravity="center"
             />
 
             <TextView
                 android:id="@+id/seekbar_Text"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:text="15"
                 android:textSize="15dp"
-                android:layout_margin="15dp"
-                android:layout_gravity="end"
+                android:layout_gravity="center"
+                android:gravity="center"
                 />
 
-        </FrameLayout>
+        </LinearLayout>
 
 <FrameLayout
     android:id="@+id/boardLayout"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="0dp"
+    android:layout_weight="9"
+    android:visibility="visible"
+    android:background="@color/white"
     >
 
-    <com.example.drawingboard.DrawBoard
+    <abled.oscar.drawingboard.DrawBoard
         android:id="@+id/drawBoard"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

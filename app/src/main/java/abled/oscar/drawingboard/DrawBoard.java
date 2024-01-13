@@ -1,17 +1,18 @@
-package com.example.drawingboard;
+package abled.oscar.drawingboard;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
+import androidx.core.content.ContextCompat;
+
 public class DrawBoard extends View {
 
-    String TAG = "터치 이벤트";
+    String TAG = "DrawBoard";
 
     Paint p1 = new Paint();
     Paint p2 = new Paint();
@@ -38,16 +39,16 @@ public class DrawBoard extends View {
     public DrawBoard(Context context, AttributeSet attr) {
         super(context);
 
-        p1.setColor(getResources().getColor(R.color.black));
-        p2.setColor(getResources().getColor(R.color.white));
-        p3.setColor(getResources().getColor(R.color.red));
-        p4.setColor(getResources().getColor(R.color.orange));
-        p5.setColor(getResources().getColor(R.color.yellow));
-        p6.setColor(getResources().getColor(R.color.green));
-        p7.setColor(getResources().getColor(R.color.blue));
-        p8.setColor(getResources().getColor(R.color.purple));
-        p9.setColor(getResources().getColor(R.color.brown));
-        p10.setColor(getResources().getColor(R.color.apricot));
+        p1.setColor(ContextCompat.getColor(context, R.color.black));
+        p2.setColor(ContextCompat.getColor(context, R.color.white));
+        p3.setColor(ContextCompat.getColor(context, R.color.red));
+        p4.setColor(ContextCompat.getColor(context, R.color.orange));
+        p5.setColor(ContextCompat.getColor(context, R.color.yellow));
+        p6.setColor(ContextCompat.getColor(context, R.color.green));
+        p7.setColor(ContextCompat.getColor(context, R.color.blue));
+        p8.setColor(ContextCompat.getColor(context, R.color.purple));
+        p9.setColor(ContextCompat.getColor(context, R.color.brown));
+        p10.setColor(ContextCompat.getColor(context, R.color.apricot));
 
         data_X[0] = 0;
         data_Y[0] = 0;
