@@ -2,13 +2,16 @@ package abled.oscar.drawingboard;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.loader.content.CursorLoader;
 
 import android.Manifest;
 import android.app.DownloadManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.media.Image;
@@ -18,6 +21,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -64,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     String filePath;
     Bitmap bitmap;
     String fileName;
-
+    boolean saveStatus = false;
     AdView adView;
 
     @Override
@@ -169,15 +173,13 @@ public class MainActivity extends AppCompatActivity {
                 } else if (view.getId() == R.id.saveButton) {
                     saveImage();
                 } else if (view.getId() == R.id.shareButton) {
-
+                    sharedImage();
                 } else if (view.getId() == R.id.resultBackButton) {
                     resultLayout.setVisibility(View.GONE);
                     mainLayout.setVisibility(View.VISIBLE);
                 } else {
                     if (view.getId() == R.id.screenshot_Btn) {
-
                         takeScreenShot();
-
                     } else if (view.getId() == R.id.reset_Btn) {
                         DrawBoard.dataNum = 0;
                     } else if (view.getId() == R.id.black_Btn) {
@@ -260,14 +262,16 @@ public class MainActivity extends AppCompatActivity {
                         mainLayout.setVisibility(View.GONE);
                         resultLayout.setVisibility(View.VISIBLE);
 
+                        saveStatus = false;
+
                     }
 
                     @Override
                     public void onPermissionDenied(List<String> deniedPermissions) {
-                        Toast.makeText(MainActivity.this, "[설정]으로 이동하셔서 권한을 허용해주세요.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "권한을 허용해 주셔야 사용 가능합니다.", Toast.LENGTH_SHORT).show();
                     }
                 })
-                .setDeniedMessage("권한을 허용해 주셔야\n사용 가능합니다.");
+                .setDeniedMessage("[설정]으로 이동하셔서 권한을 허용해주세요.");
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
 
@@ -284,15 +288,21 @@ public class MainActivity extends AppCompatActivity {
 
     public void saveImage() {
 
-        try {
-            file = ScreenShott.getInstance().saveScreenshotToPicturesFolder(MainActivity.this, bitmap, fileName);
-            filePath = file.getAbsolutePath();
+        if (!saveStatus) {
 
-            Toast.makeText(MainActivity.this, "갤러리에 저장되었습니다.", Toast.LENGTH_SHORT).show();
+            try {
+                file = ScreenShott.getInstance().saveScreenshotToPicturesFolder(MainActivity.this, bitmap, fileName);
+                filePath = file.getAbsolutePath();
 
-        } catch (Exception e) {
-            Toast.makeText(MainActivity.this, "알 수 없는 오류로 저장이 실패했습니다.", Toast.LENGTH_SHORT).show();
-            throw new RuntimeException(e);
+                Toast.makeText(MainActivity.this, "갤러리에 저장되었습니다.", Toast.LENGTH_SHORT).show();
+
+            } catch (Exception e) {
+                Toast.makeText(MainActivity.this, "알 수 없는 오류로 저장이 실패했습니다.", Toast.LENGTH_SHORT).show();
+                throw new RuntimeException(e);
+            }
+
+            saveStatus = true;
+
         }
 
     } // saveImage()
@@ -300,9 +310,32 @@ public class MainActivity extends AppCompatActivity {
 
     public void sharedImage() {
 
+        if (!saveStatus) {
 
+            try {
+                file = ScreenShott.getInstance().saveScreenshotToPicturesFolder(MainActivity.this, bitmap, fileName);
+                filePath = file.getAbsolutePath();
+
+            } catch (Exception e) {
+                Toast.makeText(MainActivity.this, "알 수 없는 오류로 저장에 실패했습니다.", Toast.LENGTH_SHORT).show();
+                throw new RuntimeException(e);
+            }
+
+            saveStatus = true;
+
+        }
+
+        Uri fileUri = FileProvider.getUriForFile(MainActivity.this, "abled.oscar.drawingboard.provider", file);
+
+        Intent i = new Intent();
+        i.setAction(Intent.ACTION_SEND);
+        i.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        i.putExtra(Intent.EXTRA_STREAM, fileUri);
+        i.setDataAndType(fileUri, "image/jpg");
+        startActivity(Intent.createChooser(i, "공유하기"));
 
     } // sharedImage()
+
 
 
 }
