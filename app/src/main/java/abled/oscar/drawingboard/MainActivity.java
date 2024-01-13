@@ -73,7 +73,21 @@ public class MainActivity extends AppCompatActivity {
     } // onCreate()
 
 
+    @Override
+    public void onBackPressed() {
 
+        if (resultLayout.getVisibility() == View.VISIBLE) {
+
+            resultLayout.setVisibility(View.GONE);
+            mainLayout.setVisibility(View.VISIBLE);
+
+        } else {
+
+            finish();
+
+        }
+
+    }
 
 
     public void setVariable() {
