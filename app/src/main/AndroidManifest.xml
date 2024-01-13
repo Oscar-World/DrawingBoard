@@ -15,9 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.DrawingBoard">
-        <activity
-            android:name=".ResultActivity"
-            android:exported="false" />
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-7333272773461004~1416534158"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

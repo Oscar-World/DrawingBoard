@@ -31,6 +31,9 @@ import android.widget.Toast;
 
 
 import com.bumptech.glide.Glide;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
 import com.gun0912.tedpermission.PermissionListener;
 import com.gun0912.tedpermission.normal.TedPermission;
 
@@ -61,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
     String filePath;
     Bitmap bitmap;
     String fileName;
+
+    AdView adView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,7 +125,10 @@ public class MainActivity extends AppCompatActivity {
         shareBtn = findViewById(R.id.shareButton);
         backBtn = findViewById(R.id.resultBackButton);
 
-
+        MobileAds.initialize(MainActivity.this);
+        adView = findViewById(R.id.adView);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        adView.loadAd(adRequest);
 
     } // setVariable()
 
