@@ -4,24 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.loader.content.CursorLoader;
 
 import android.Manifest;
-import android.app.DownloadManager;
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.media.Image;
-import android.media.projection.MediaProjection;
-import android.media.projection.MediaProjectionManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -310,20 +300,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void sharedImage() {
 
-        if (!saveStatus) {
-
-            try {
-                file = ScreenShott.getInstance().saveScreenshotToPicturesFolder(MainActivity.this, bitmap, fileName);
-                filePath = file.getAbsolutePath();
-
-            } catch (Exception e) {
-                Toast.makeText(MainActivity.this, "알 수 없는 오류로 저장에 실패했습니다.", Toast.LENGTH_SHORT).show();
-                throw new RuntimeException(e);
-            }
-
-            saveStatus = true;
-
-        }
+        saveImage();
 
         Uri fileUri = FileProvider.getUriForFile(MainActivity.this, "abled.oscar.drawingboard.provider", file);
 
