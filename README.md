@@ -1,5 +1,10 @@
 <img src="https://capsule-render.vercel.app/api?type=waving&color=AEE1FC&height=150&section=header&text=Drawing%20Board&fontSize=60" />
 
+<br/>
+
+<img src="https://img.shields.io/badge/개인 프로젝트-FFB5AB?style=flat-square&logoColor=000000"/>
+<img src="https://img.shields.io/badge/플레이 스토어 출시-C5FFBC?style=flat-square&logoColor=000000"/>
+
 <br/><br/>
 
 ![App Icon](https://github.com/Oscar-World/DrawingBoard/blob/master/applogo.png)
