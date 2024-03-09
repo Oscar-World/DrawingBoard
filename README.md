@@ -6,13 +6,13 @@
 
 <br/><br/>
 
-### 플레이 스토어 링크 ↓
+### 🔗 플레이 스토어 링크 ↓
 
 <https://play.google.com/store/apps/details?id=abled.oscar.drawingboard>
 
 <br/>
 
-### 앱 실행 영상 링크 ↓
+### 🔗 앱 실행 영상 링크 ↓
 
 <https://www.youtube.com/watch?v=lYecrFTidKw>
 
@@ -22,7 +22,7 @@
 
 <br/><br/>
 
-# 앱 소개
+# ✍️ 앱 소개
 
 <br/>
 
@@ -30,7 +30,7 @@
 
 <br/><br/>
 
-# 기획 목적
+# 🎬 기획 목적
 
 <br/>
 
@@ -50,7 +50,7 @@
 
 <br/><br/>
 
-# 주요 기능
+# 📱 주요 기능
 
 <br/>
 
@@ -74,17 +74,17 @@
 
 <br/><br/>
 
-### Language
+### 🔡 Language
 - Java
 
 <br/>
 
-### Open API
+### 🌎 Open API
 - Google AdMob
 
 <br/>
 
-### Library
+### 📖 Library
 - TedPermission
 - Glide
 - screenshott
