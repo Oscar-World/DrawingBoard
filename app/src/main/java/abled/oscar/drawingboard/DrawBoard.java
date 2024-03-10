@@ -25,13 +25,12 @@ public class DrawBoard extends View {
     Paint p9 = new Paint();
     Paint p10 = new Paint();
 
-    int data_X[] = new int[30000];
-    int data_Y[] = new int[30000];
-    int data_Color[] = new int[30000];
-    int data_Radius[] = new int[30000];
+    int[] data_X = new int[30000];
+    int[] data_Y = new int[30000];
+    int[] data_Color = new int[30000];
+    int[] data_Radius = new int[30000];
 
     static int radius = 15;
-
     static int dataNum = 0;
     int mx, my;
     static int whatColor = 0;
@@ -106,8 +105,12 @@ public class DrawBoard extends View {
 
         invalidate();
 
-    }
+    } // onDraw()
 
+
+    /*
+    사용자 터치에 의해 그려진 데이터 저장
+     */
     public void saveData() {
 
         data_X[dataNum] = mx;
@@ -115,8 +118,12 @@ public class DrawBoard extends View {
         data_Color[dataNum] = whatColor;
         data_Radius[dataNum] = radius;
 
-    }
+    } // saveData()
 
+
+    /*
+    터치 이벤트 발생 시 좌표 · 터치 입력 총 값 저장
+     */
     public boolean onTouchEvent (MotionEvent event) {
 
         mx = (int) event.getX();
@@ -128,7 +135,7 @@ public class DrawBoard extends View {
 
         return true;
 
-    }
+    } // onTouchEvent()
 
 
 }

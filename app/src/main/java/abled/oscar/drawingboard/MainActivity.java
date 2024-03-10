@@ -23,7 +23,6 @@ import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.bumptech.glide.Glide;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -55,9 +54,8 @@ public class MainActivity extends AppCompatActivity {
     ImageView resultImage, backBtn;
 
     File file;
-    String filePath;
+    String filePath, fileName;
     Bitmap bitmap;
-    String fileName;
     boolean saveStatus = false;
     AdView adView;
 
@@ -72,6 +70,9 @@ public class MainActivity extends AppCompatActivity {
     } // onCreate()
 
 
+    /*
+    시스템 뒤로가기 버튼 클릭 이벤트
+     */
     @Override
     public void onBackPressed() {
 
@@ -86,9 +87,12 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-    }
+    } // onBackPressed()
 
 
+    /*
+    변수 초기화
+     */
     public void setVariable() {
 
         frameLayout = findViewById(R.id.boardLayout);
@@ -127,6 +131,9 @@ public class MainActivity extends AppCompatActivity {
     } // setVariable()
 
 
+    /*
+    뷰 초기화
+     */
     public void setView() {
 
         // 시크바
@@ -233,6 +240,9 @@ public class MainActivity extends AppCompatActivity {
     } // setView()
 
 
+    /*
+    스크린샷 캡쳐하기
+     */
     public void takeScreenShot() {
 
         TedPermission.Builder tedPermission = TedPermission.create()
@@ -276,6 +286,9 @@ public class MainActivity extends AppCompatActivity {
     } // takeScreenShot()
 
 
+    /*
+    이미지 갤러리에 저장
+     */
     public void saveImage() {
 
         if (!saveStatus) {
@@ -298,6 +311,9 @@ public class MainActivity extends AppCompatActivity {
     } // saveImage()
 
 
+    /*
+    이미지 외부 공유하기
+     */
     public void sharedImage() {
 
         saveImage();
@@ -312,7 +328,6 @@ public class MainActivity extends AppCompatActivity {
         startActivity(Intent.createChooser(i, "공유하기"));
 
     } // sharedImage()
-
 
 
 }
